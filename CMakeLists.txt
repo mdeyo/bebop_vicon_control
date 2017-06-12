@@ -22,13 +22,13 @@ catkin_package()
 ## Mark executable scripts (Python etc.) for installation
 ## in contrast to setup.py, you can choose the destination
 catkin_install_python(PROGRAMS
-   teleop_twist_keyboard.py
-   bebop_controller.py
-   bebop_geofence.py
-   update_goal_keyboard.py
-   bebop_api_server.py
-   bebop_api_client.py
-   autonomous_landing.py
+   src/teleop_twist_keyboard.py
+   src/bebop_controller.py
+   src/bebop_geofence.py
+   src/update_goal_keyboard.py
+   src/bebop_api_server.py
+   src/bebop_api_client.py
+   src/autonomous_landing.py
 
    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
