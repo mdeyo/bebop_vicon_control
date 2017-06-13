@@ -29,6 +29,7 @@ catkin_install_python(PROGRAMS
    src/bebop_api_server.py
    src/bebop_api_client.py
    src/autonomous_landing.py
+   src/play_sounds.py
 
    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )

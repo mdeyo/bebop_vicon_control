@@ -42,10 +42,8 @@
       <param name="tf_ref_frame_id" value="/world" type="str" />
     </node>
 
-
     <node pkg="bebop_vicon_control" type="autonomous_landing.py" name="autonomous_landing" output="screen">
       <param name="node_name" value="autonomous_landing" />
     </node>
-
 
 </launch>

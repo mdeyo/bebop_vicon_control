@@ -14,8 +14,12 @@ geofence_y = [-.4, 1.94]
 
 geofence_z = 1.5
 
+playedSound = False
+
 
 def callback(data):
+
+    global playedSound
 
     killDrone = False
 
@@ -26,14 +30,20 @@ def callback(data):
     vicon_z = translations.z
 
     if vicon_x < geofence_x[0] or vicon_x > geofence_x[1] or vicon_y < geofence_y[0] or vicon_y > geofence_y[1]:
+        if not playedSound:
+            pub_sound.publish(String('geofence'))
+            playedSound = True
+            print('**** Broke geofence position = ' +
+                  str(vicon_x) + ',' + str(vicon_y) + ' ****')
         killDrone = True
         empty = Empty()
         pub_emergency.publish(empty)
-        print('**** Broke geofence position = ' +
-              str(vicon_x) + ',' + str(vicon_y) + ' ****')
 
-    if vicon_z > geofence_z:
+    elif vicon_z > geofence_z:
         pub_land.publish(Empty())
+
+    else:
+        playedSound = False
 
 
 if __name__ == "__main__":
@@ -44,6 +54,7 @@ if __name__ == "__main__":
 
     pub_emergency = rospy.Publisher(bebop_ns + '/reset', Empty, queue_size=10)
     pub_land = rospy.Publisher(bebop_ns + '/land', Empty, queue_size=10)
+    pub_sound = rospy.Publisher('/sound_effects', String, queue_size=10)
 
     sub = rospy.Subscriber("vicon/bebop1/bebop1", TransformStamped, callback)
 

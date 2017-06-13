@@ -73,4 +73,8 @@
       <remap from="state" to="/$(arg bebop_ns)/state/yaw" />
     </node>
 
+    <node name="bebop_api_server" pkg="bebop_vicon_control" type="bebop_api_server.py" output="screen">
+      <param name="node_name" value="bebop_api_server" />
+    </node>
+
 </launch>

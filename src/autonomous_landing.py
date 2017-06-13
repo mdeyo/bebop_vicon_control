@@ -77,6 +77,7 @@ if __name__ == "__main__":
 
     pub_enable_goal = rospy.Publisher(
         bebop_ns + '/setpoint/enable', Bool, queue_size=10)
+    pub_sound = rospy.Publisher('/sound_effects', String, queue_size=10)
 
     sub = rospy.Subscriber("/vicon/bebop1/bebop1",
                            TransformStamped, vicon_callback)
@@ -101,3 +102,4 @@ if __name__ == "__main__":
             if reallyClose():
                 pub_enable_goal.publish(Bool(False))
                 pub_land.publish(Empty())
+                pub_sound.publish(String('landing_beep'))

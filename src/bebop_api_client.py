@@ -51,13 +51,13 @@ class Bebop(object):
         land_call()
         return True
 
-    def turtle_bot_landing(self):
+    def turtlebot_land(self):
         """Return the balance remaining after withdrawing *amount*
         dollars."""
-        if amount > self.balance:
-            raise RuntimeError('Amount greater than available balance.')
-        self.balance -= amount
-        return self.balance
+        print('**Landing on Turtlebot**')
+        land_call = rospy.ServiceProxy('bebop1/turtlebot_land', EmptySrv)
+        land_call()
+        return True
 
     def fly_to(self, x, y, z):
         """Return the balance remaining after depositing *amount*

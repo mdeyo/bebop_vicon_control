@@ -35,6 +35,8 @@ class Bebop(object):
                       self.takeoff_service_callback)
         rospy.Service('bebop1/land', EmptySrv,
                       self.land_service_callback)
+        rospy.Service('bebop1/turtlebot_land', EmptySrv,
+                      self.turtlebot_land_service_callback)
         rospy.Service('bebop1/fly_to', FlyTo,
                       self.fly_to_service_callback)
         rospy.Service('bebop1/chase', EmptySrv,
@@ -110,13 +112,16 @@ class Bebop(object):
             time.sleep(0.5)
         return []
 
-    def turtle_bot_landing(self):
+    def turtlebot_land_service_callback(self, req):
         """Return the balance remaining after withdrawing *amount*
         dollars."""
-        if amount > self.balance:
-            raise RuntimeError('Amount greater than available balance.')
-        self.balance -= amount
-        return self.balance
+        print('**Landing on Turtlebot**')
+        for i in range(5):
+            self.publishGoals([self.turtle_pad_x, self.turtle_pad_y, 0.8, 0])
+            self.pub_enable_goal.publish(Bool(True))
+            self.pub_enable_auto_land.publish(Bool(True))
+            time.sleep(0.5)
+        return []
 
     def deposit(self, amount):
         """Return the balance remaining after depositing *amount*
