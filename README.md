@@ -6,7 +6,7 @@ Need to download and install vicon_bridge and bebop_autonomy from source:
 https://github.com/AutonomyLab/bebop_autonomy
 https://github.com/ethz-asl/vicon_bridge
 And install pid package:
-apt-get install ros-<distro>-pid
+apt-get install ros-\<distributionName\>-pid
 
 #Launch
 1. Connect to Bebop Wifi AP
