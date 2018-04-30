@@ -22,4 +22,15 @@ PID package: `sudo apt-get install ros-<distro>-pid`
 3. `roslaunch bebop_vicon_control bebop_pid_keyboard.py`
 
 # Usage
-More notes...
+The project is broken up into 2 different launch files for editing convience. This enables you to keep the Bebop driver WiFi connection (which can be frustrating to reconnect with frequently) while you make iterative edits to the PID gains, keyboard-commanded locations
+
+The current keyboard commands included the following:
+- Ctl-c and 0 both cause an emergency stop
+- 1 has the Bebop takeoff
+- 2 initiates the Bebop landing manuever 
+- 3,4,6,7 are mapped to different x,y,z positions in VICON coordinates
+- 5 uses the autonomous landing function to land on another VICON object
+  
+
+The bebop_pid_keyboard launch file also spins up an API server node that allows you to control the Bebop with any other python script that uses the Bebop client object in `bebop_api_client.py`.
+
